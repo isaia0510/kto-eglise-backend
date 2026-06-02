@@ -1,13 +1,7 @@
 package com.example.eglise.controllers;
 
-import com.example.eglise.entity.Fikambanana;
-import com.example.eglise.entity.Genre;
-import com.example.eglise.entity.Sakrameta;
-import com.example.eglise.entity.Vaomiera;
-import com.example.eglise.repository.FikambananaRepository;
-import com.example.eglise.repository.GenreRepository;
-import com.example.eglise.repository.SakrametaRepository;
-import com.example.eglise.repository.VaomieraRepository;
+import com.example.eglise.entity.*;
+import com.example.eglise.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/masina")
+@RequestMapping("api/util")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class UtilController {
@@ -26,10 +20,16 @@ public class UtilController {
     private final FikambananaRepository fikambananaRepository;
     private final VaomieraRepository vaomieraRepository;
     private final GenreRepository genreRepository;
+    private final MaritalStatusRepository maritalStatusRepository;
 
     @GetMapping("/genre")
     public ResponseEntity<List<Genre>> getGenre() {
         return ResponseEntity.ok(genreRepository.findAll());
+    }
+
+    @GetMapping("/marital")
+    public ResponseEntity<List<MaritalStatus>> getMarital() {
+        return ResponseEntity.ok(maritalStatusRepository.findAll());
     }
 
     @GetMapping("/sakrameta")
